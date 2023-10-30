@@ -1,0 +1,32 @@
+.menu {
+    display: flex;
+    border-bottom: 1px solid;
+    padding: 20px 100px 0 100px;
+}
+
+
+.title {
+    width: 100px;
+    height: 30px;
+    display: flex;
+    margin-right: 20px;
+    border-radius: 6px 6px 0px 0px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-family: NanumGothic;
+    font-size: 12px;
+    background: #EDEDEB;
+
+}
+
+.title:hover,
+.title.selected {
+    background: #F7ECC1;
+    font-weight: 600;
+}
+
+.login{
+    font-weight: 600;
+    margin-left: auto;
+}
