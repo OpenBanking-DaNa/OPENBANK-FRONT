@@ -1,6 +1,8 @@
 import MenuBarCss from "./MenuBar.module.css"
+import Login from "../Login/Login"
 
 function MenuBar() {
+
 
     return (
         <>
@@ -8,8 +10,7 @@ function MenuBar() {
                 <div className={MenuBarCss.title}> MAIN </div>
                 <div className={MenuBarCss.title}> 내역작성 </div>
 
-                <div className={MenuBarCss.input} input></div>
-                <div className={MenuBarCss.login}> 로그인 </div>
+                <Login />
             </div>
         </>
     )

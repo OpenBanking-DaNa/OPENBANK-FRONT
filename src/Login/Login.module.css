@@ -1,0 +1,24 @@
+
+.logindiv{
+    display: flex;
+    margin-left: auto;
+}
+
+.input{
+    border-radius: 6px 6px 0px 0px;
+}
+
+.input>input{
+    width: 100px;
+    margin-right: 10px;
+}
+
+.submit{
+    font-weight: 600;
+}
+
+button{
+    border: none;
+    background: none;
+    flex-direction: column;
+}
