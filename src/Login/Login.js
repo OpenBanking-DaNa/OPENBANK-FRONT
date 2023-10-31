@@ -64,8 +64,8 @@ function Login() {
                                 onChange={handleChange}
                             >
                             </input>
+                            <button className={LoginCss.submit} onClick={LoginSubmit}>로그인</button>
                         </div>
-                        <button className={LoginCss.submit} onClick={LoginSubmit}>로그인</button>
                     </div>
                 )
             }

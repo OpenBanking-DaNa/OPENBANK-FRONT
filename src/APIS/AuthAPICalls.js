@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loginAction, logoutAction } from "../Modules/AuthSlice";
 import { ReduxReset } from "../Utils/ReduxReset";
 
+// 로그인 API
 export const callLoginAPI = (form) => {
 
     console.log("callLoginAPI - data", form);
@@ -43,6 +44,7 @@ export const callLoginAPI = (form) => {
 
 }
 
+// 로그아웃 API
 export const callLogoutAPI = () => {
 
     return async (dispatch, getState) => {
@@ -63,3 +65,7 @@ export const callLogoutAPI = () => {
     }
 
 }
+
+
+
+// OAuth test API
