@@ -7,7 +7,7 @@ function MainLayOut() {
 
     return (
         <div className={MainLayOutCss.main}>
-            메인입니다.
+            <h2>메인페이지</h2>
         </div>
     );
 
