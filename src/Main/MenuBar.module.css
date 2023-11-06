@@ -22,7 +22,7 @@ body{
 }
 
 .title:hover,
-.title.selected {
+.title.active {
     background: #F7ECC1;
     font-weight: 600;
 }

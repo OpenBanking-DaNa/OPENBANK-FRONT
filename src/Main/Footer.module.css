@@ -1,6 +1,11 @@
-.footerDiv{
-    border-top: 1px solid ;
-    display: 'flex';
-    flex-direction: 'center';
-    
-}
+.footerDiv {
+    position: fixed;
+    bottom: 0; /* 하단에 고정 */
+    left: 0; /* 왼쪽에 고정 */
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px; 
+  }
+  
