@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import OpenCss from './Openbanking.module.css';
+import Openbanking_card from './Openbanking_card';
 
 function Openbanking() {
 
@@ -60,6 +61,8 @@ function Openbanking() {
             <button className={OpenCss.button} onClick={handleButtonClick}>
                 권한
             </button>
+
+            <Openbanking_card/>
         </>
     );
 }

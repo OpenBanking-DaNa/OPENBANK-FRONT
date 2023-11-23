@@ -29,7 +29,7 @@ function MenuBar() {
                     <NavLink to="/open" className={MenuBarCss.navLink}>
                         오픈뱅킹
                     </NavLink>
-                </div>
+                </div>  
                 <div
                     className={`${MenuBarCss.title} ${selectedDiv === 2 ? MenuBarCss.active : ''}`}
                     onClick={() => handleDivClick(2)}

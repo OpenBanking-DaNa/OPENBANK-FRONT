@@ -1,21 +1,49 @@
 
-export const authorizeAPI = async() => {
+// export const authorizeAPI = async() => {
+
+//     try{
+
+//         const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/authorize`;
+
+//         const response = await fetch(requestURL, {
+
+//             method: "GET",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+            
+//         })
+
+//     } catch(e) {
+//         console.error("권한 요청 오류");
+
+//     }
+// } 
+
+
+
+export const authorizeAPI = async(tokenRequest) => {
 
     try{
 
-        const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/authorize`;
+        console.error(tokenRequest, "tokenRequest");
+
+        const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/token`;
 
         const response = await fetch(requestURL, {
 
-            method: "GET",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify(tokenRequest),
             
         })
 
+
     } catch(e) {
-        console.error("권한 요청 오류");
+        console.error(e.message, "권한 요청 오류");
 
     }
 } 
+
