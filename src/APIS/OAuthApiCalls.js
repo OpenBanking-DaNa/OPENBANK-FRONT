@@ -1,9 +1,21 @@
-import axios from "axios"
-import { createAsyncThunk } from "@reduxjs/toolkit";
 
+export const authorizeAPI = async() => {
 
-export const bankList = createAsyncThunk(
-    async () => {
-        const response = await axios.get(`${process.env.REACT_APP_BASIC_URL}`)
+    try{
+
+        const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/authorize`;
+
+        const response = await fetch(requestURL, {
+
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            
+        })
+
+    } catch(e) {
+        console.error("권한 요청 오류");
+
     }
-)
+} 

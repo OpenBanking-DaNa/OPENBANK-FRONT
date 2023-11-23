@@ -65,7 +65,3 @@ export const callLogoutAPI = () => {
     }
 
 }
-
-
-
-// OAuth test API
