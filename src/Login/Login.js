@@ -11,9 +11,10 @@ function Login() {
     const [form, setForm] = useState({
         memberId: '',
         memberPassword: '',
+        clientId: ''
     })
 
-    console.log("form", form);
+    console.log("Login - form", form);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
