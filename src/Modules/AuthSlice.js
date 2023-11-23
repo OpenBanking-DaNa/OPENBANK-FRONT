@@ -21,6 +21,7 @@ const authSlice = createSlice({
             state.refreshExp = payload.data.refreshTokenExpiresIn;
             state.isLogin = true;
             state.isTempPwd = payload.data.isTempPwd;
+            state.clientId = payload.data.clientId;
         },
 
         logoutAction: (state, {payload}) => {

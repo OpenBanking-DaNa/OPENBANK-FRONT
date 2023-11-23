@@ -1,7 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import OpenCss from './Openbanking.module.css';
 
 function Openbanking() {
+
+    const loginMember = useSelector(state => state.auth);
+
+    console.log("Openbanking - loginMember", loginMember);
+
     const handleButtonClick = useCallback(() => {
 
         // 폼을 프로그래밍 방식으로 제출
@@ -45,7 +51,7 @@ function Openbanking() {
                 target="_blank"
             >
                 <input type="hidden" name="response_type" value="code" />
-                <input type="hidden" name="client_id" value="ed0e3ff9-a457-4752-b3bf-3bbc390771ef" />
+                <input type="hidden" name="client_id" value={loginMember.clientId} />
                 <input type="hidden" name="redirect_uri" value="http://localhost:3000/open" />
                 <input type="hidden" name="scope" value="login inquiry transfer" />
                 <input type="hidden" name="state" value="12345678901234567890123456789012" />
