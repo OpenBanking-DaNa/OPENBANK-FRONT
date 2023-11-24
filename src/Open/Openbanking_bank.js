@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import OpenCss from './Openbanking.module.css';
 import Openbanking_card from './Openbanking_card';
 
-function Openbanking() {
+function Openbanking_bank() {
 
     const loginMember = useSelector(state => state.auth);
 
@@ -73,4 +73,4 @@ function Openbanking() {
     );
 }
 
-export default Openbanking;
+export default Openbanking_bank;
