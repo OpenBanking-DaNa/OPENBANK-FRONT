@@ -17,6 +17,7 @@ const authSlice = createSlice({
             // state : 초기값의 value를 가져오는 역할 
 
             state.memberId = payload.data.memberId;
+            state.memberCode = payload.data.memberCode;
             state.accessExp = payload.data.accessTokenExpiresIn;
             state.refreshExp = payload.data.refreshTokenExpiresIn;
             state.isLogin = true;
