@@ -6,8 +6,8 @@ import Openbanking_bank from './Openbanking_bank';
 
 function Openbanking() {
 
-    const loginMember = useSelector(state => state.auth);
-    console.log("Openbanking - loginMember", loginMember);
+    // const loginMember = useSelector(state => state.auth);
+    // console.log("Openbanking - loginMember", loginMember);
 
     return (
         <>

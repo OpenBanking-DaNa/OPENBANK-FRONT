@@ -1,51 +1,64 @@
 
-// export const authorizeAPI = async() => {
+export const getSecretAPI = async (memberCode) => {
 
-//     try{
+    console.log("getSecretAPI start");
 
-//         const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/authorize`;
+    const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/secret/${memberCode}`;
 
-//         const response = await fetch(requestURL, {
+    try {
+        const response = await fetch(requestURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-            
-//         })
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-//     } catch(e) {
-//         console.error("권한 요청 오류");
+        const secretData = await response.json();
+        console.log('Server response:', secretData);
+        return secretData;
 
-//     }
-// } 
+    } catch (error) {
+        console.error('Server request failed:', error.message);
+    }
+
+    console.log("getSecretAPI end");
+};
 
 
 
-export const authorizeAPI = async(tokenRequest) => {
+export const authorizeAPI = async (authData) => {
 
-    try{
+    console.log("authorizeAPI start");
+    console.log("authorizeAPI authData", authData);
 
-        console.error(tokenRequest, "tokenRequest");
-
-        const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/token`;
+    try {
+        // const requestURL = `${process.env.REACT_APP_OB_TOKEN_URL}`;
+        const requestURL = `https://testapi.openbanking.or.kr/oauth/2.0/token`;
 
         const response = await fetch(requestURL, {
-
-            method: "POST",
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             },
-            body: JSON.stringify(tokenRequest),
-            
-        })
+            // body: JSON.stringify({
+            //     client_id: authData.client_id,
+            //     client_secret: authData.client_secret,
+            //     code: authData.code,
+            //     grant_type: authData.grant_type,
+            //     redirect_uri: authData.redirect_uri,
 
-        console.log("token response ======= ", response.json());
+        });
+        console.log("token response =======", response.json());
 
-
-    } catch(e) {
-        console.error(e.message, "권한 요청 오류");
+    } catch (e) {
+        console.error(e.message + "토큰 요청 오류");
 
     }
-} 
+
+    console.log("authorizeAPI end");
+}
 

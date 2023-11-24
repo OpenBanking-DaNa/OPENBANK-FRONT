@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import OpenCss from './Openbanking.module.css';
-import Openbanking_card from './Openbanking_card';
+import { getSecretAPI, authorizeAPI } from '../APIs/OAuthApiCalls';
 
 function Openbanking_bank() {
 
@@ -19,38 +19,77 @@ function Openbanking_bank() {
         form.submit();
     }, []);
 
+    const [authData, setAuthData] = useState({
+        code: code,
+        client_id: loginMember.clientId,
+        redirect_uri: process.env.REACT_APP_OB_REDIRECT_URI,
+        grant_type: 'authorization_code',
+        client_secret: '',
+    });
+
+    console.log('Openbanking_bank - authData: ', authData);
+
     useEffect(() => {
+        if (code) {
 
-        const authData = {
-            code: code,
-            client_id: process.env.REACT_APP_OB_CLIENT_ID,
-            redirect_uri: process.env.REACT_APP_OB_REDIRECT_URI,
-            grant_type: 'authorization_code',
-            client_secret: ''
+            const fetchData = async () => {
+
+                console.log("loginMember.loginMember.memberCode : " + loginMember.memberCode);
+
+                const memberCode = loginMember.memberCode;
+
+                try {
+                    const secretData = await getSecretAPI(memberCode);
+                    console.log('API secretData:', secretData);
+                    console.log('API secretData.data.clientSecret:', secretData.data.clientSecret);
+
+                    setAuthData(prevAuthData => ({
+                        ...prevAuthData,
+                        client_secret: secretData.data.clientSecret,
+                    }));
+
+                    console.log('API authData:', authData);
+
+
+
+                    try {
+                        const response = await authorizeAPI(authData);
+                        console.log('API Response:', response);
+                    } catch (error) {
+                        console.error('API Request Failed:', error);
+                    }
+
+                } catch (error) {
+                    console.error('API Request Failed:', error);
+                }
+            };
+            fetchData();
         }
-        const requestURL = `${process.env.REACT_APP_BASIC_URL}/api/oauth/token`;
-        console.log('authData: ', authData);
+    }, [code]);
 
-        fetch(requestURL , {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: authData,
-            // body: JSON.stringify(authData),
-        }).then(response => response.json())
-            .then(data => {
-                console.log('서버 응답:', data);
-            })
-            .catch(error => {
-                console.error('서버 요청 실패:', error);
-            });
-    }, []); 
+    // useEffect(() => {
+    //     if (authData.client_secret) {
+
+    //         const fetchData = async () => {
+    //             try {
+    //                 const response = await authorizeAPI(authData);
+    //                 console.log('API Response:', response);
+
+
+    //             } catch (error) {
+    //                 console.error('API Request Failed:', error);
+    //             }
+    //         };
+    //         fetchData();
+    //     }
+    // }, [authData]);
+
+
 
 
     return (
         <>
-            <h2>권한요청</h2>
+            <h2>은행 권한요청</h2>
             <form
                 id="openbankingForm"
                 method="get"
@@ -67,8 +106,6 @@ function Openbanking_bank() {
             <button className={OpenCss.button} onClick={handleButtonClick}>
                 권한
             </button>
-
-            <Openbanking_card/>
         </>
     );
 }
