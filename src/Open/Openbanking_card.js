@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import OpenCss from './Openbanking.module.css';
-import { CardAuthTokenAPI } from '../APIS/CardApi';
-import { authorizeAPI } from '../APIS/OAuthApiCalls';
+import { CardAuthTokenAPI } from '../APIs/CardApi';
+import { authorizeAPI } from '../APIs/OAuthApiCalls';
 
 function Openbanking_card() {
     
