@@ -40,6 +40,8 @@ export const authorizeAPI = async(tokenRequest) => {
             
         })
 
+        console.log("token response ======= ", response.json());
+
 
     } catch(e) {
         console.error(e.message, "권한 요청 오류");
