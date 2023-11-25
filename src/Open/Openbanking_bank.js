@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import OpenCss from './Openbanking.module.css';
-import { getSecretAPI, authorizeAPI } from '../APIs/OAuthApiCalls';
+import { getSecretAPI, authorizeAPI } from '../APIS/OAuthApiCalls';
 
 function Openbanking_bank() {
 

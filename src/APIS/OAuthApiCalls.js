@@ -1,3 +1,7 @@
+import { useDispatch } from "react-redux";
+import { tokenAction } from "../Modules/OpenBankingSlice";
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getSecretAPI = async (memberCode) => {
 
@@ -60,40 +64,25 @@ export const authorizeAPI = async (authData) => {
     console.log("authorizeAPI end");
 }
 
-
-export const getTokenToServerAPI = async (tokenRequest) => {
-
-
+export const getTokenToServerAPI = createAsyncThunk(
+    '',async (tokenRequest) => {
     try {
-        const requestURL = `${process.env.REACT_APP_OB_TOKEN_URL}`;
-
-        const response = await fetch(requestURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            },
-            body: JSON.stringify(tokenRequest),
-            
-        })
-        .then(response => response.json());
-
-        console.log("token response =======", response.data);
-
-        return async(dispatch, getState) => {
-
-            if(!response.data.include("code=400")){
-    
-                return response.data;                 
-            } else {
-                alert("엑세스 토큰 발급 실패");
-            }
-        }    
-
-    } catch(e) {
-        console.error(e.message, "권한 요청 오류");
-
+      const requestURL = `${process.env.REACT_APP_OB_TOKEN_URL}`;
+      const response = await axios.post(requestURL, tokenRequest, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+      });
+  
+      console.log("token response =======", response.data);
+  
+      if (!response.data.includes("code=400")) {
+        // dispatch(tokenAction(response.data));
+        return response.data;
+      } else {
+        alert("엑세스 토큰 발급 실패");
+      }
+    } catch (e) {
+      console.error(e.message, "권한 요청 오류");
     }
-
-}
-
-
+  })

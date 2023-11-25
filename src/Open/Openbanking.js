@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import OpenCss from './Openbanking.module.css';
 import Openbanking_card from './Openbanking_card';
 import Openbanking_bank from './Openbanking_bank';
+import CardList from '../Card/CardList';
 
 function Openbanking() {
 
@@ -13,6 +14,7 @@ function Openbanking() {
         <>
             <Openbanking_bank/>
             <Openbanking_card/>
+            <CardList/>
         </>
     );
 }
