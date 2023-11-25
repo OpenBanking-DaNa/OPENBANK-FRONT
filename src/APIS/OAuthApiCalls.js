@@ -39,9 +39,17 @@ export const authorizeAPI = async(tokenRequest) => {
             body: JSON.stringify(tokenRequest),
             
         })
+        .then(response => response.json());
 
-        console.log("token response ======= ", response.json());
+        return async(dispatch, getState) => {
 
+            if(!response.data.include("code=400")){
+    
+                return response.data;                 
+            } else {
+                alert("엑세스 토큰 발급 실패");
+            }
+        }    
 
     } catch(e) {
         console.error(e.message, "권한 요청 오류");

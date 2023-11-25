@@ -22,11 +22,11 @@ function Openbanking_card() {
 
     const authorData = {
         code: code,
-        client_id: process.env.REACT_APP_OB_CLIENT_ID,
-        redirect_uri: process.env.REACT_APP_OB_REDIRECT_URI,
-        grant_type: 'authorization_code',
-        client_secret: '',
-        memberId: loginMember.memberId,
+        clientId: process.env.REACT_APP_OB_CLIENT_ID,
+        redirectUri: process.env.REACT_APP_OB_REDIRECT_URI,
+        grantType: 'authorization_code',
+        clientSecret: '',
+        memberId: "1111",
     }
 
     const tokenButtonClick = () => {
