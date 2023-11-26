@@ -5,6 +5,7 @@ const initialState = {
     memberId: '',
     memberPassword: '',
     isLogin: false,
+    memberCode:'',
 
 }
 
@@ -18,6 +19,7 @@ const authSlice = createSlice({
 
             state.memberId = payload.data.memberId;
             state.memberCode = payload.data.memberCode;
+            state.memberCode = payload.data.memberCode;
             state.accessExp = payload.data.accessTokenExpiresIn;
             state.refreshExp = payload.data.refreshTokenExpiresIn;
             state.isLogin = true;
@@ -27,8 +29,8 @@ const authSlice = createSlice({
 
         logoutAction: (state, {payload}) => {
             Object.assign(state, initialState); // state를 initialState로 변경
-            localStorage.setItem('reduxState', '');
-            localStorage.removeItem('accessToken');
+            sessionStorage.setItem('reduxState', '');
+            sessionStorage.removeItem('accessToken');
             document.cookie = 'RefreshToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT; domain=localhost; path=/;';
             window.location.href="/";
 

@@ -6,6 +6,7 @@ export const CardInfoAPI = createAsyncThunk(
   async (reqCard, thunkAPI) => {
     try {
       console.log("reqCard======" ,reqCard);
+      console.log("accessToekn======" ,process.env.REACT_APP_OB_AccessTest);
 
       const url = process.env.REACT_APP_OB_CARDINFO_URL;
 

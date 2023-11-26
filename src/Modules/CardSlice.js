@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getTokenToServerAPI } from "../APIS/OAuthApiCalls";
+import { CardInfoAPI } from "../APIS/CardApi";
 
 // 초기값
 const initialState = {
+    // Request 
     bank_tran_id:'',
     user_seq_no:'',
     bank_code_std:'',
     member_bank_code:'',
+
+    // Response 
+    resCardInfo:'',
+
 
 }
 
@@ -27,6 +33,10 @@ const CardSlice = createSlice({
         builder
           .addCase(getTokenToServerAPI.fulfilled, (state, { payload }) => {
             state.user_seq_no = payload.user_seq_no;
+          })
+          .addCase(CardInfoAPI.fulfilled, (state, {payload})=>{
+            state.resCardInfo = payload;
+
           })
       },
     

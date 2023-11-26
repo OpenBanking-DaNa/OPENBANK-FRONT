@@ -30,7 +30,7 @@ export const callLoginAPI = (form) => {
             if (response.status === 200) {
                 dispatch(loginAction(response))
                 console.log("callLoginAPI - result.data : ", response.data);
-                window.localStorage.setItem('accessToken', response.data.accessToken);
+                window.sessionStorage.setItem('accessToken', response.data.accessToken);
             } else {
                 console.log("callLoginAPI - result.data : ", response);
                 alert(response.message);
